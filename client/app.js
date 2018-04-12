@@ -5,10 +5,11 @@ const actions = {}
 
 const view = (state, actions) => (
     <div>
-        <h1>Take a picture</h1>
+        <h1>Upload a scrum board picture!</h1>
         <form>
-            <input type='file' accept="image/*" capture></input>
-            <input type="submit" value="Upload"></input>
+            <input type="file" name="file" accept="image/*" capture /><br />
+            <input type="text" name="team" placeholder="Team name!" />
+            <input type="submit" value="Scrum!" />
         </form>
     </div>
 )
