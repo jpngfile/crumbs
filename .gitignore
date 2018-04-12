@@ -3,4 +3,5 @@ node_modules/
 static/
 dist/
 .cache/
+*.swp
 yarn-error.log
