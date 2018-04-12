@@ -2,6 +2,6 @@
 
 ## Objective
 
-## Reference
+## References
 
 ## Lessons learned
