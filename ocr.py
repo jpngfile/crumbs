@@ -5,11 +5,11 @@ import time
 subscription_key = "e4f9a2574d75482597cd04bb93cfb3e0"
 vision_base_url = "https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/"
 ocr_url = vision_base_url + "ocr"
-text_recognition_url = vision_base_url + "RecognizeText"
+text_recognition_url = vision_base_url + "recognizeText"
 
 image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Cursive_Writing_on_Notebook_paper.jpg/800px-Cursive_Writing_on_Notebook_paper.jpg"
 
-image_path = "testImages/backlog.jpg"
+image_path = "testImages/rsz_backlog.jpg"
 image_data = open(image_path, 'rb').read()
 
 headers    = {
@@ -28,7 +28,6 @@ print("Text recognition post")
 params = {'handwriting': True}
 response = requests.post(text_recognition_url, headers=headers, params=params, data=image_data)
 response.raise_for_status()
-print(response.json())
 operation_url = response.headers["Operation-Location"]
 print(operation_url)
 analysis = {}
