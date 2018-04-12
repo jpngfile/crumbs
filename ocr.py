@@ -4,22 +4,23 @@ import time
 import io
 from PIL import Image
 
-def scaleImage(imgFile, maxSize):
+def scaleImage(img_file, maxSize):
     size = maxSize, maxSize
-    img = Image.open(imgFile)
-    imgWithinLimit = all(dimension < limit for dimension, limit in zip(img.size, size))
-    if (not imgWithinLimit):
+    img = Image.open(img_file)
+    img_within_limit = all(dimension < limit for dimension, limit in zip(img.size, size))
+    if (not img_within_limit):
         img.thumbnail(size, Image.ANTIALIAS)
-    imgBytes = io.BytesIO()
-    img.save(imgBytes, format="JPEG")
-    return imgBytes
+    img_bytes = io.BytesIO()
+    img.save(img_bytes, format="JPEG")
+    return img_bytes
 
 subscription_key = "e4f9a2574d75482597cd04bb93cfb3e0"
 vision_base_url = "https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/"
 text_recognition_url = vision_base_url + "recognizeText"
 
 image_path = "testImages/bigScrumboard.jpg"
-image_data = scaleImage(image_path, 3200).getvalue()
+image_file = open(image_path, 'rb')
+image_data = scaleImage(image_file, 3200).getvalue()
 
 headers    = {
     'Ocp-Apim-Subscription-Key': subscription_key, 
