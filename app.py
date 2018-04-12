@@ -1,9 +1,22 @@
+import time
 from flask import Flask, jsonify, request
 app = Flask(__name__, static_url_path='/static')
 
 @app.route('/')
 def home():
     return app.send_static_file('index.html')
+
+@app.route('/api/<team>')
+def get_scrum(team):
+    data = {
+            'team': team,
+            'created': int(time.time()),
+            'headers': {
+                'some_header': ['sticky1', 'sticky2'],
+                'another_one': ['test']
+                }
+            }
+    return jsonify(data)
 
 @app.route('/api')
 def hello_api():
