@@ -1,5 +1,6 @@
 __pycache__/
 node_modules/
+static/
 dist/
 .cache/
 yarn-error.log
