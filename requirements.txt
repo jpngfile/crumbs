@@ -14,5 +14,4 @@ six==1.11.0
 urllib3==1.22
 virtualenv==15.2.0
 Werkzeug==0.14.1
-requests>=2.18.4
 Flask-PyMongo>=0.5.1
