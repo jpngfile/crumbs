@@ -1,0 +1,15 @@
+.front-page {
+    margin: 50px;
+}
+
+.file-label {
+    margin-bottom: 20px;
+}
+
+.file-name {
+     margin-left: 10px;
+ }
+
+input[type="file"] {
+    display: none;
+}
