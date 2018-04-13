@@ -2,7 +2,7 @@ import { h, app } from 'hyperapp'
 import { location, Route } from '@hyperapp/router'
 
 const state = {
-    file: ""
+    file: "",
     board: {
         team: 'not loaded',
         headers: {
