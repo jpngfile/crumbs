@@ -1,6 +1,6 @@
 import time
 from ocr import scaleImage, getAzureAnalysis, parseAnalysis
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, redirect, url_for
 from flask_cors import CORS
 from flask_pymongo import PyMongo
 
@@ -58,13 +58,14 @@ def upload():
         return jsonify(
             error='No file sent.')
 
+    team_name = request.form['team']
     scaled_file = scale_image(request.files['file'], 3200)
     image_json = ml_scan_image(scaled_file.getvalue())
     payload = parse_image_json(image_json)
 
-    cache_payload(payload, request.form['team'])
+    cache_payload(payload, team_name)
 
-    return jsonify(payload)
+    return redirect(url_for('get_scrum', team=team_name))
 
 @app.route('/static/<path:path>')
 def send_static(path):
