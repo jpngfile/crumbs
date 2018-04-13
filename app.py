@@ -54,6 +54,17 @@ def upload():
     if 'team' not in request.form:
         return jsonify(
             error='No team specified.')
+
+    return jsonify({
+            'team': request.form['team'],
+            'created': int(time.time()),
+            'headers': {
+                'backlog': ['sleep', 'game'],
+                'doing': ['work'],
+                'done': ['eat']
+            }
+        })
+
     if 'file' not in request.files:
         return jsonify(
             error='No file sent.')

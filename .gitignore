@@ -4,3 +4,4 @@ dist/
 .cache/
 *.swp
 yarn-error.log
+venv/
