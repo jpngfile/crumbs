@@ -1,12 +1,47 @@
 <html>
     <head>
         <title>Crumbs</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+        <script>
+            function change() {
+                var fileName = document.getElementById('file-upload').files[0].name
+                var basename = fileName.split('\\').reverse()[0]
+                if (basename){
+                    var fileSelected = document.getElementById('file-selected')
+                    fileSelected.innerHTML = basename
+                }
+            }
+        </script>
+        <style>
+            .front-page {
+                margin: 50px;
+            }
+
+            .file-label {
+                margin-bottom: 20px;
+            }
+
+            .file-name {
+                margin-left: 10px;
+            }
+
+            input[type="file"] {
+                display: none;
+            }
+        </style>
     </head>
     <body>
-        <form method="POST" action="/api/upload" enctype="multipart/form-data" >
-            <input type="text" name="team" />
-            <input type="file" name="file" capture />
-            <input type="submit" value="submit" />
-        </form>
+        <div class="front-page">
+            <form method="POST" action="/api/upload" enctype="multipart/form-data" >
+                <label class="btn file-label" for="file-upload"> Custom Upload </label>
+                <span class="file-name" id="file-selected">No file submitted</span>
+                <input id="file-upload" onchange="change()" type="file" name="file" accept="image/*" capture /><br />
+                <label for="team-name">Team name</label>
+                <input id="team-name" type="text" name="team" placeholder="Team name!" />
+                <input class="btn" type="submit" value="Scrum!" />
+            </form>
+        </div>
     </body>
 </html>
