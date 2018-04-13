@@ -1,7 +1,7 @@
 {
     "scripts": {
         "start": "parcel ./client/index.html --open",
-        "build": "parcel build ./client/index.html -d ./static --public-url /static",
+        "build": "echo \"Skip\"",
         "test": "echo \"No test specified!\""
     },
     "dependencies": {
