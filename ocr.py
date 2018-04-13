@@ -90,7 +90,8 @@ def getSampleAnalysis():
         time.sleep(1)
     return analysis
 
-sample_analysis = getSampleAnalysis()
-word_list = getWords(sample_analysis)
-scrum_headers = getScrumDict(word_list)
-print(scrum_headers)
+def getSampleScrumDict():
+    sample_analysis = getSampleAnalysis()
+    word_list = getWords(sample_analysis)
+    scrum_headers = getScrumDict(word_list)
+    return scrum_headers
