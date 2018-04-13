@@ -1,22 +1,28 @@
 import time
-import ocr as ocr
+from ocr import scaleImage, getAzureAnalysis, parseAnalysis
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_pymongo import PyMongo
 
+app = Flask(__name__, static_url_path='/static')
 CORS(app, resources={r"/api/*": {"origins": "http://localhost:1234"}})
 
 @app.route('/board/<team>')
 def home_boards(team):
     return app.send_static_file('index.html')
 
-app = Flask(__name__, static_url_path='/static')
 app.config['MONGO_URI'] = "mongodb://admin:123@ds243059.mlab.com:43059/crumbs"
 mongo = PyMongo(app)
 
-def scale_image(file): pass
-def ml_scan_image(file): pass
-def parse_image_json(json): pass
+def scale_image(file, size):
+    return scaleImage(file, size)
+
+def ml_scan_image(image_data):
+    return getAzureAnalysis(image_data)
+
+def parse_image_json(json):
+    return parseAnalysis(json)
+
 def cache_payload(json, team):
     scrum_dict = {
         'team': team,
@@ -55,13 +61,13 @@ def upload():
         return jsonify(
             error='No file sent.')
 
-    scaled_file = scale_image(request.files[file])
-    image_json = ml_scan_image(scaled_file)
+    scaled_file = scale_image(request.files['file'], 3200)
+    image_json = ml_scan_image(scaled_file.getvalue())
     payload = parse_image_json(image_json)
 
     cache_payload(payload, request.form['team'])
 
-    return payload
+    return jsonify(payload)
 
 @app.route('/static/<path:path>')
 def send_static(path):
