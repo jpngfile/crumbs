@@ -2,8 +2,10 @@
 import requests
 import time
 import io
+import pprint
 from PIL import Image
 
+pp = pprint.PrettyPrinter(indent=4)
 def scaleImage(img_file, maxSize):
     size = maxSize, maxSize
     img = Image.open(img_file)
@@ -18,7 +20,7 @@ subscription_key = "e4f9a2574d75482597cd04bb93cfb3e0"
 vision_base_url = "https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/"
 text_recognition_url = vision_base_url + "recognizeText"
 
-image_path = "testImages/bigScrumboard.jpg"
+image_path = "testImages/dummyScrumboard.jpg"
 image_file = open(image_path, 'rb')
 image_data = scaleImage(image_file, 3200).getvalue()
 
@@ -37,4 +39,4 @@ while not "recognitionResult" in analysis:
     response_final = requests.get(operation_url, headers=headers)
     analysis = response_final.json()
     time.sleep(1)
-print(analysis)
+pp.pprint(analysis)
