@@ -2,6 +2,7 @@ import { h, app } from 'hyperapp'
 import { location, Route } from '@hyperapp/router'
 
 const state = {
+    file: ""
     board: {
         team: 'not loaded',
         headers: {
@@ -12,6 +13,7 @@ const state = {
 }
 
 const actions = {
+    setFile: value => state => ({file: value}),
     getTeam: async (team) => {
         const payload = await fetch(`http://localhost:5000/api/${team}`)
         const board = await payload.json()
@@ -59,9 +61,19 @@ const view = (state, actions) => (
     <div className="front-page">
         <h1>Upload a scrum board picture!</h1>
         <form>
-            <input type="file" name="file" accept="image/*" capture /><br />
-            <input type="text" name="team" placeholder="Team name!" />
-            <input type="submit" value="Scrum!" />
+            <label className="btn file-label" for="file-upload"> Custom Upload </label>
+            <span className="file-name" id="file-selected">{state.file}</span>
+            <input id="file-upload" onchange={() => {
+                var fileName = document.getElementById('file-upload').value
+                var basename = fileName.split('\\').reverse()[0]
+                if (basename){
+                    actions.setFile(basename)
+                }
+            }} type="file" name="file" accept="image/*" capture /><br />
+
+            <label for="team-name">Team name</label>
+            <input id="team-name" type="text" name="team" placeholder="Team name!" />
+            <input className="btn" type="submit" value="Scrum!" />
         </form>
 
         <Route path="/board/:team" state={state} actions={actions} render={App(state, actions)} />
