@@ -1,6 +1,10 @@
 import time
 from flask import Flask, jsonify, request
+from flask_pymongo import PyMongo
+
 app = Flask(__name__, static_url_path='/static')
+app.config['MONGO_URI'] = "mongodb://admin:123@ds243059.mlab.com:43059/crumbs"
+mongo = PyMongo(app)
 
 @app.route('/')
 def home():
