@@ -1,13 +1,29 @@
 import time
+import ocr as ocr
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+from flask_pymongo import PyMongo
 
-app = Flask(__name__, static_url_path='/static')
 CORS(app, resources={r"/api/*": {"origins": "http://localhost:1234"}})
 
 @app.route('/board/<team>')
 def home_boards(team):
     return app.send_static_file('index.html')
+
+app = Flask(__name__, static_url_path='/static')
+app.config['MONGO_URI'] = "mongodb://admin:123@ds243059.mlab.com:43059/crumbs"
+mongo = PyMongo(app)
+
+def scale_image(file): pass
+def ml_scan_image(file): pass
+def parse_image_json(json): pass
+def cache_payload(json, team):
+    scrum_dict = {
+        'team': team,
+        'created': int(time.time()),
+        'headers': json
+    }
+    mongo.db.boards.insert(scrum_dict)
 
 @app.route('/')
 def home():
@@ -54,7 +70,3 @@ def send_static(path):
 if __name__ == "__main__":
     app.run()
 
-def scale_image(file): pass
-def ml_scan_image(file): pass
-def parse_image_json(json): pass
-def cache_payload(json, team): pass
