@@ -90,28 +90,6 @@ def getSampleAnalysis():
         time.sleep(1)
     return analysis
 
-sample_word_list = [   {   u'boundingBox': [0, 596, 1112, 524, 1155, 983, 0, 1054],
-    u'text': u'Backlog'},
-    {   u'boundingBox': [1142, 523, 1921, 477, 1964, 936, 1185, 981],
-        u'text': u'Doing'},
-    {   u'boundingBox': [2131, 465, 2879, 422, 2922, 880, 2173, 924],
-        u'text': u'Done'},
-    {   u'boundingBox': [594, 1186, 741, 1184, 738, 1230, 591, 1233],
-        u'text': u'take'},
-    {   u'boundingBox': [864, 1170, 1081, 1148, 1092, 1211, 875, 1233],
-        u'text': u'Build'},
-    {   u'boundingBox': [1299, 1115, 1475, 1119, 1470, 1173, 1294, 1169],
-        u'text': u'make'},
-    {   u'boundingBox': [2211, 1083, 2366, 1047, 2426, 1126, 2270, 1162],
-        u'text': u'Charg'},
-    {   u'boundingBox': [593, 1239, 833, 1242, 825, 1316, 585, 1313],
-        u'text': u'pictures'},
-    {   u'boundingBox': [893, 1242, 1127, 1245, 1119, 1319, 885, 1316],
-        u'text': u'Snowman'},
-    {   u'boundingBox': [1296, 1189, 1513, 1185, 1515, 1255, 1297, 1259],
-        u'text': u'Spaghett'},
-    {   u'boundingBox': [2233, 1139, 2407, 1149, 2414, 1216, 2241, 1205],
-        u'text': u'phone'}]
 sample_analysis = getSampleAnalysis()
 word_list = getWords(sample_analysis)
 scrum_headers = getScrumDict(word_list)
