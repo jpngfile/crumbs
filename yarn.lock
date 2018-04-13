@@ -2,6 +2,14 @@
 # yarn lockfile v1
 
 
+"@hyperapp/fx@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@hyperapp/fx/-/fx-0.7.0.tgz#ac128607e6af0cd8e2521c41750fa23a401a2ee2"
+
+"@hyperapp/router@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@hyperapp/router/-/router-0.7.0.tgz#99fde37696d07949514c3519db1fe6785a053d2d"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
