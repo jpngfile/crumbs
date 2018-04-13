@@ -56,7 +56,7 @@ const App = (state, actions) => ({ location, match }) => {
 }
 
 const view = (state, actions) => (
-    <div>
+    <div className="front-page">
         <h1>Upload a scrum board picture!</h1>
         <form>
             <input type="file" name="file" accept="image/*" capture /><br />
