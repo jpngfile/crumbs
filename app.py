@@ -1,6 +1,9 @@
 import time
 from flask import Flask, jsonify, request
+from flask_cors import CORS
+
 app = Flask(__name__, static_url_path='/static')
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:1234"}})
 
 @app.route('/board/<team>')
 def home_boards(team):
