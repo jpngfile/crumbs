@@ -37,14 +37,11 @@ def home():
 
 @app.route('/api/<team>')
 def get_scrum(team):
-    data = {
-            'team': team,
-            'created': int(time.time()),
-            'headers': {
-                'some_header': ['sticky1', 'sticky2'],
-                'another_one': ['test']
-                }
-            }
+    try:
+        data = mongo.db.boards.find({'team': team}).sort([('created', -1)]).next()
+        data.pop('_id', None)
+    except StopIteration:
+        data = {}
     return jsonify(data)
 
 @app.route('/api')
